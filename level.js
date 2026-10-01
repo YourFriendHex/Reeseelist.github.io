@@ -13,6 +13,10 @@ async function loadLevel()
   //Convert json data into javascript and store in variable named levels
   const levels = await response.json();
 
+  //Find the corresponding level id from the url in the json data
+  /// "===" are they equal and the same type?
+  const level = levels.find(level => level.levelID === levelID);
+
   //Print level ID to console
   console.log(levelID);
   console.log(levels);
