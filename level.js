@@ -17,9 +17,10 @@ async function loadLevel()
   /// "===" are they equal and the same type?
   const level = levels.find(level => level.levelID === levelID);
 
-  //Print level ID to console
+  //Print level ID, full json, and level specific data to console
   console.log(levelID);
   console.log(levels);
+  console.log(level);
   
 }
 
