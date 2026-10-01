@@ -30,10 +30,22 @@ async function loadLevel()
   document.getElementById("level-verifier").textContent = level.verifier;
   document.getElementById("level-id").textContent = level.levelID;
 
-  // Copy the level ID to the clipboard
-  document.getElementById("copy-id-button").addEventListener("click", () => {
+ // Find the copy button
+ const copyButton = document.getElementById("copy-id-button");
+
+ // Copy the level ID when the button is clicked
+ copyButton.addEventListener("click", () => {
+
+    // Copy the ID to the clipboard
     navigator.clipboard.writeText(level.levelID);
-  });
+
+    // Change the button text
+    copyButton.textContent = "Copied!";
+
+    //Run this after 1000 ms
+    setTimeout(() => {
+    copyButton.textContent = "Copy ID";
+  }, 1000);
 }
 
 loadLevel();
