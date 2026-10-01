@@ -68,3 +68,66 @@ main {
     color: inherit;
     text-decoration: none;
 }
+
+.back-button {
+    position: fixed;
+
+    top: 20px;
+    left: 20px;
+
+    padding: 10px 15px;
+
+    background: #222;
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 6px;
+}
+
+/* Main level information card */
+.level-page {
+    max-width: 700px;
+    margin: 100px auto 30px;
+    padding: 30px;
+
+    background: white;
+
+    border-radius: 10px;
+}
+
+/* Level page title */
+header h1 {
+    margin-bottom: 5px;
+}
+
+/* Level ranking */
+.level-rank {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Level points */
+.level-points {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Level verifier */
+.level-verifier {
+    margin-bottom: 15px;
+}
+
+/* Geometry Dash level ID */
+.level-id {
+    color: #666;
+}
+
+
+
+/* Level page subtitle */
+header p {
+    margin-top: 0;
+}
