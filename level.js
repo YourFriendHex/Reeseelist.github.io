@@ -29,6 +29,11 @@ async function loadLevel()
   document.getElementById("level-points").textContent = level.points;
   document.getElementById("level-verifier").textContent = level.verifier;
   document.getElementById("level-id").textContent = level.levelID;
+
+  // Copy the level ID to the clipboard
+  document.getElementById("copy-id-button").addEventListener("click", () => {
+    navigator.clipboard.writeText(level.levelID);
+  });
 }
 
 loadLevel();
