@@ -1,6 +1,6 @@
 [
     {
-        "levelID": 0000000001,
+        "levelID": 1111111,
         "rank": 1,
         "name": "Test Level",
         "points": 100,
@@ -8,7 +8,7 @@
         "verifier": "Test Verifier"
     },
     {
-        "levelID": 0000000002,
+        "levelID": 22222222,
         "rank": 2,
         "name": "Another Test Level",
         "points": 99,
@@ -16,7 +16,7 @@
         "verifier": "Another Verifier"
     },
     {
-        "levelID": 0000000003,
+        "levelID": 333333333,
         "rank": 3,
         "name": "Yet Another Level",
         "points": 98,
