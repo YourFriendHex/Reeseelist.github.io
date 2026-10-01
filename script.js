@@ -16,6 +16,7 @@ async function loadLevels() {
             levelElement.classList.add("level");
 
             levelElement.innerHTML = `
+            <a href="level.html?id=${level.levelID}" class="level-link">
                 <div class="rank">#${level.rank}</div>
 
                 <div class="level-info">
@@ -30,6 +31,8 @@ async function loadLevels() {
                 <div class="verifier">
                     Verified by ${level.verifier}
                 </div>
+            </a>
+            
             `;
 
             list.appendChild(levelElement);
