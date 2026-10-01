@@ -21,7 +21,14 @@ async function loadLevel()
   console.log(levelID);
   console.log(levels);
   console.log(level);
-  
+
+  //Put level data onto the page
+  document.getElementById("level-name").textContent = level.name;
+  document.getElementById("level-name").textContent = level.name;
+  document.getElementById("level-name").textContent = level.name;
+  document.getElementById("level-name").textContent = level.name;
+  document.getElementById("level-name").textContent = level.name;
+  document.getElementById("level-name").textContent = level.name;
 }
 
 loadLevel();
