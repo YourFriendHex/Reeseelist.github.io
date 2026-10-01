@@ -58,6 +58,7 @@ main {
     color: #666;
 }
 
+/*text-decoration should set to 0 removes underline in link*/
 .level-link {
     display: flex;
     align-items: center;
