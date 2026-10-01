@@ -45,7 +45,8 @@ async function loadLevel()
     //Run this after 1000 ms
     setTimeout(() => {
     copyButton.textContent = "Copy ID";
-  }, 1000));
+  }, 1000);
+ });
 }
 
 loadLevel();
