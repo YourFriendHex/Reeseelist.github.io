@@ -1,3 +1,4 @@
+console.log("JavaScript is running");
 async function loadLevels() {
     try {
         const response = await fetch("levels.json");
