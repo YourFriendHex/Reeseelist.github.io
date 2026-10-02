@@ -1,10 +1,30 @@
 async function loadLevels() {
 
-    // Get the levels from Google Sheets
-    const levels = await getSheet("Levels");
+    // Get the raw level data from Google Sheets
+    const levelRows = await getSheet("Levels");
+
+    // Turn the spreadsheet rows into level objects
+    const levels = levelRows.map(row => {
+
+        return {
+            levelID: row[0],
+            name: row[1],
+            rank: Number(row[2]),
+            points: Number(row[3]),
+            creator: row[4],
+            verifier: row[5]
+        };
+
+    });
 
     // Find the list on the webpage
     const list = document.getElementById("level-list");
+
+    // Create an entry for every level
+    levels.forEach(level => {
+        // ...
+    });
+
 
     // Create an entry for every level
     levels.forEach(level => {
