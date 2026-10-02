@@ -62,6 +62,13 @@ async function loadPlayer() {
     // Find the completed levels section
     const list = document.getElementById("completed-levels");
 
+    // Check if the player has no completed levels
+    if (completedLevels.length === 0) {
+
+        list.textContent = "This player has not completed any levels yet.";
+
+    }
+
 
     // Create an entry for every completed level
     completedLevels.forEach(level => {
