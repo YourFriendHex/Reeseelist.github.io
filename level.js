@@ -6,39 +6,8 @@ async function loadLevel() {
     // Get the level ID from the URL
     const levelID = params.get("id");
 
-    // The ID of our Google spreadsheet
-    const spreadsheetID = "1gg5hyZiUSGLVQuIhOqh3FOI9iR0oO2zdQwefgqPkvaE";
-
-    // Ask Google Sheets for the Levels sheet
-    const url =
-        `https://docs.google.com/spreadsheets/d/${spreadsheetID}/gviz/tq?tqx=out:csv&sheet=Levels`;
-
-    // Fetch the spreadsheet
-    const response = await fetch(url);
-
-    // Turn the response into text
-    const data = await response.text();
-
-    // Split the spreadsheet into rows
-    const rows = data.split("\n");
-
-    // Turn every spreadsheet row into a level object
-    const levels = rows.slice(1).map(row => {
-
-        const columns = row.split(",").map(value =>
-            value.replace(/^"|"$/g, "")
-        );
-
-        return {
-            levelID: columns[0],
-            name: columns[1],
-            rank: Number(columns[2]),
-            points: Number(columns[3]),
-            creator: columns[4],
-            verifier: columns[5]
-        };
-
-    });
+    // Get all levels from Google Sheets
+    const levels = await getLevels();
 
     // Find the level that matches the ID in the URL
     const level = levels.find(level => level.levelID === levelID);
@@ -68,7 +37,6 @@ async function loadLevel() {
         }, 1000);
 
     });
-
 }
 
 loadLevel();
