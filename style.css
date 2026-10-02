@@ -144,3 +144,26 @@ header p {
 
     cursor: pointer;
 }
+
+.player {
+    display: flex;
+    align-items: center;
+
+    background: white;
+
+    margin-bottom: 10px;
+    padding: 15px;
+
+    border-radius: 8px;
+}
+
+.player-name {
+    flex: 1;
+
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.player-points {
+    font-weight: bold;
+}
