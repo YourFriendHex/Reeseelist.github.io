@@ -72,7 +72,8 @@ async function getPlayers() {
 
         return {
             name: row[0],
-            tags: row[1]
+            tags: row[1],
+            gradient: row[2]
         };
 
     });
@@ -147,6 +148,7 @@ async function getPlayerScores() {
         return {
             name: player.name,
             points: points,
+            gradient: player.gradient,
             tags: player.tags
         };
 
@@ -158,6 +160,18 @@ async function getPlayerScores() {
 // Get colors for player tags
 function tagColor(tag) {
 
+    function tagGradient(colors) {
+
+    // Turn the color string into an array
+    const colorList = colors
+        .split(",")
+        .map(color => color.trim())
+        .filter(color => color !== "");
+
+    // Create a CSS gradient from the colors
+    return `linear-gradient(to right, ${colorList.join(", ")})`;
+    }
+    
     let hash = 0;
 
     for (let i = 0; i < tag.length; i++) {
