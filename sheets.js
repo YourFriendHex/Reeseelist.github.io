@@ -129,3 +129,19 @@ async function getPlayerScores() {
 
     return playerScores;
 }
+
+// Get colors for player tags
+function tagColor(tag) {
+
+    let hash = 0;
+
+    for (let i = 0; i < tag.length; i++) {
+
+        hash = tag.charCodeAt(i) + ((hash << 5) - hash);
+
+    }
+
+    const color = Math.abs(hash).toString(16).substring(0, 6);
+
+    return "#" + color.padStart(6, "0");
+}
