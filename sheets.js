@@ -20,11 +20,36 @@ async function getSheet(sheetName) {
     // Turn the rows into level objects
   const rowsWithoutHeader = rows.slice(1);
 
-const sheetData = rowsWithoutHeader.map(row => {
+  const sheetData = rowsWithoutHeader.map(row => {
 
-    const columns = row.split(",").map(value =>
-        value.replace(/^"|"$/g, "")
-    );
+    const columns = [];
+    let currentValue = "";
+    let insideQuotes = false;
+
+    // Look at every character in the row
+    for (let i = 0; i < row.length; i++) {
+
+        const character = row[i];
+
+        // Toggle whether we are inside a quoted cell
+        if (character === '"') {
+            insideQuotes = !insideQuotes;
+        }
+
+        // A comma outside quotes means we found the end of a column
+        else if (character === "," && !insideQuotes) {
+            columns.push(currentValue);
+            currentValue = "";
+        }
+
+        // Otherwise, add the character to the current value
+        else {
+            currentValue += character;
+        }
+    }
+
+    // Add the final column
+    columns.push(currentValue);
 
     return columns;
 
