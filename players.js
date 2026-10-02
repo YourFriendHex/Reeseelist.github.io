@@ -16,6 +16,10 @@ async function loadPlayers() {
 
         playerElement.classList.add("player");
 
+        const modTag = player.role === "MOD"
+        ? `<span class="mod-tag">MOD</span>`
+        : "";
+
        
        playerElement.innerHTML = `
             <a href="playerdata.html?name=${encodeURIComponent(player.name)}" class="player-link">
@@ -26,6 +30,7 @@ async function loadPlayers() {
 
             <div class="player-name">
                 ${player.name}
+                ${modTag}
             </div>
 
             <div class="player-points">
@@ -34,9 +39,7 @@ async function loadPlayers() {
 
         </a>
     `;
-        const modTag = player.role === "MOD"
-        ? `<span class="mod-tag">MOD</span>`
-        : "";
+        
 
         list.appendChild(playerElement);
 
