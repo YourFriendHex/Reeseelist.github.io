@@ -47,7 +47,7 @@ async function loadPlayers() {
             const color = tagColor(tag);
 
            return `
-              <span class="player-tag" style="background-color: ${color};">
+              <span class="player-tag" style="color: ${color};">
                  ${tag}
               </span>
            `;
