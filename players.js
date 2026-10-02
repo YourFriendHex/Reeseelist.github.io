@@ -22,6 +22,7 @@ async function loadPlayers() {
         ? player.tags.split(",").map(tag => tag.trim())
         : [];
 
+        // Get gradient for tags
         const gradientColors = player.gradient
         ? player.gradient.split(",").map(color => color.trim())
         : [];
