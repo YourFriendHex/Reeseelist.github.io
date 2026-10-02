@@ -1,30 +1,66 @@
 async function loadLevels() {
 
-    // The ID of our Google spreadsheet
     const spreadsheetID = "1gg5hyZiUSGLVQuIhOqh3FOI9iR0oO2zdQwefgqPkvaE";
 
-    // Ask Google Sheets for the Levels sheet
     const url =
         `https://docs.google.com/spreadsheets/d/${spreadsheetID}/gviz/tq?tqx=out:csv&sheet=Levels`;
 
-    // Fetch the spreadsheet
     const response = await fetch(url);
 
-    // Turn the response into text
     const data = await response.text();
 
-    // Print the spreadsheet data to the console
-    console.log(data);
-
-    // Split the spreadsheet into individual rows
     const rows = data.split("\n");
 
-    console.log(rows);
+    const levels = rows.slice(1).map(row => {
 
-    // Look at the first level row
-    const columns = rows[1].split(",");
+        const columns = row.split(",").map(value =>
+            value.replace(/^"|"$/g, "")
+        );
 
-    console.log(columns);
+        return {
+            levelID: columns[0],
+            name: columns[1],
+            rank: Number(columns[2]),
+            points: Number(columns[3]),
+            creator: columns[4],
+            verifier: columns[5]
+        };
+
+    });
+
+    // Find the list on the webpage
+    const list = document.getElementById("level-list");
+
+    // Create an entry for every level
+    levels.forEach(level => {
+
+        const levelElement = document.createElement("div");
+        levelElement.classList.add("level");
+
+        levelElement.innerHTML = `
+            <a href="level.html?id=${level.levelID}" class="level-link">
+
+                <div class="rank">#${level.rank}</div>
+
+                <div class="level-info">
+                    <div class="level-name">${level.name}</div>
+                    <div class="creator">by ${level.creator}</div>
+                </div>
+
+                <div class="points">
+                    ${level.points} pts
+                </div>
+
+                <div class="verifier">
+                    Verified by ${level.verifier}
+                </div>
+
+            </a>
+        `;
+
+        list.appendChild(levelElement);
+    });
+
 }
 
 loadLevels();
