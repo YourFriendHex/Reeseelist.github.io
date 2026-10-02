@@ -20,6 +20,16 @@ async function loadLevels() {
     const rows = data.split("\n");
 
     console.log(rows);
+
+    // Split the spreadsheet into individual rows
+    const rows = data.split("\n");
+
+    console.log(rows);
+
+    // Look at the first level row
+    const columns = rows[1].split(",");
+
+    console.log(columns);
 }
 
 loadLevels();
