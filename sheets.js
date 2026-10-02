@@ -47,7 +47,7 @@ async function getPlayers() {
 
         return {
             name: row[0],
-            role: row[1]
+            tags: row[1]
         };
 
     });
