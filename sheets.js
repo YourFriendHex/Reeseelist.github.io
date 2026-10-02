@@ -67,6 +67,7 @@ async function getCompletions() {
         return {
             player: row[0],
             levelID: row[1]
+            
         };
 
     });
@@ -120,7 +121,8 @@ async function getPlayerScores() {
 
         return {
             name: player.name,
-            points: points
+            points: points,
+            tags: player.tags
         };
 
     });
