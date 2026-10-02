@@ -1,3 +1,22 @@
+// Function to create tag colors
+function tagColor(tag) {
+
+    let hash = 0;
+
+    // Turn each character into a number
+    for (let i = 0; i < tag.length; i++) {
+
+        hash = tag.charCodeAt(i) + ((hash << 5) - hash);
+
+    }
+
+    // Convert the number into a hexadecimal color
+    const color = Math.abs(hash).toString(16).substring(0, 6);
+
+    return "#" + color.padStart(6, "0");
+}
+
+// Main function that loads players
 async function loadPlayers() {
 
     // Get the player scores
@@ -16,9 +35,23 @@ async function loadPlayers() {
 
         playerElement.classList.add("player");
 
-        const modTag = player.role === "MOD"
-        ? `<span class="mod-tag">MOD</span>`
-        : "";
+        // Get player tags
+        const tags = player.tags
+        ? player.tags.split(",").map(tag => tag.trim())
+        : [];
+
+        // Format the player tags and color them
+        const tagHTML = tags.map(tag => {
+
+           const color = tagColor(tag);
+
+           return `
+              <span class="player-tag" style="background-color: ${color};">
+                 ${tag}
+              </span>
+           `;
+
+        }).join("");
 
        
        playerElement.innerHTML = `
@@ -30,7 +63,7 @@ async function loadPlayers() {
 
             <div class="player-name">
                 ${player.name}
-                ${modTag}
+                ${tagHTML}
             </div>
 
             <div class="player-points">
@@ -45,5 +78,7 @@ async function loadPlayers() {
 
     });
 }
+
+
 
 loadPlayers();
