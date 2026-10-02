@@ -43,7 +43,8 @@ async function loadPlayers() {
         // Format the player tags and color them
         const tagHTML = tags.map(tag => {
 
-           const color = tagColor(tag);
+            // Call tag color function to get tage color
+            const color = tagColor(tag);
 
            return `
               <span class="player-tag" style="background-color: ${color};">
