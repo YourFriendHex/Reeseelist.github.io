@@ -34,6 +34,9 @@ async function loadPlayers() {
 
         </a>
     `;
+        const modTag = player.role === "MOD"
+        ? `<span class="mod-tag">MOD</span>`
+        : "";
 
         list.appendChild(playerElement);
 
