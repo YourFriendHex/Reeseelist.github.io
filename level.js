@@ -28,7 +28,7 @@ async function loadLevel() {
 
     // Put level data onto the page
     document.getElementById("level-name").textContent = level.name;
-    document.getElementById("level-creator").textContent = level.creator;
+    document.getElementById("level-creator").textContent = `By ${level.creator}`;
     document.getElementById("level-rank").textContent = level.rank;
     document.getElementById("level-points").textContent = level.points;
     document.getElementById("level-verifier").textContent = level.verifier;
