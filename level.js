@@ -6,8 +6,20 @@ async function loadLevel() {
     // Get the level ID from the URL
     const levelID = params.get("id");
 
-    // Get all levels from Google Sheets
-    const levels = await getSheet("Levels");
+    const levelRows = await getSheet("Levels");
+
+    const levels = levelRows.map(row => {
+
+    return {
+        levelID: row[0],
+        name: row[1],
+        rank: Number(row[2]),
+        points: Number(row[3]),
+        creator: row[4],
+        verifier: row[5]
+    };
+
+});
 
     // Find the level that matches the ID in the URL
     const level = levels.find(level => level.levelID === levelID);
