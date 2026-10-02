@@ -1,46 +1,20 @@
-console.log("JavaScript is running");
 async function loadLevels() {
-    try {
-        const response = await fetch("levels.json");
 
-        if (!response.ok) {
-            throw new Error("Could not load levels.json");
-        }
+    // The ID of our Google spreadsheet
+    const spreadsheetID = "1gg5hyZiUSGLVQuIhOqh3FOI9iR0oO2zdQwefgqPkvaE";
 
-        const levels = await response.json();
+    // Ask Google Sheets for the Levels sheet
+    const url =
+        `https://docs.google.com/spreadsheets/d/${spreadsheetID}/gviz/tq?tqx=out:csv&sheet=Levels`;
 
-        const list = document.getElementById("level-list");
+    // Fetch the spreadsheet
+    const response = await fetch(url);
 
-        levels.forEach(level => {
-            const levelElement = document.createElement("div");
-            levelElement.classList.add("level");
+    // Turn the response into text
+    const data = await response.text();
 
-            levelElement.innerHTML = `
-            <a href="level.html?id=${level.levelID}" class="level-link">
-                <div class="rank">#${level.rank}</div>
-
-                <div class="level-info">
-                    <div class="level-name">${level.name}</div>
-                    <div class="creator">by ${level.creator}</div>
-                </div>
-
-                <div class="points">
-                    ${level.points} pts
-                </div>
-
-                <div class="verifier">
-                    Verified by ${level.verifier}
-                </div>
-            </a>
-            
-            `;
-
-            list.appendChild(levelElement);
-        });
-
-    } catch (error) {
-        console.error(error);
-    }
+    // Print the spreadsheet data to the console
+    console.log(data);
 }
 
 loadLevels();
