@@ -206,3 +206,18 @@ header p {
 #completed-levels {
     margin-top: 20px;
 }
+
+.mod-tag {
+    display: inline-block;
+
+    margin-left: 8px;
+    padding: 3px 6px;
+
+    background: #5865F2;
+    color: white;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    border-radius: 4px;
+}
