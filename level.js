@@ -1,52 +1,74 @@
-async function loadLevel() 
-{
+async function loadLevel() {
 
-  //Take the parameters from the current URL and put them into a variable called params.
-  const params = new URLSearchParams(window.location.search);
+    // Get the information from the URL
+    const params = new URLSearchParams(window.location.search);
 
-  //Gets teh level ID and puts it into variable named levelID
-  const levelID = params.get("id"); 
+    // Get the level ID from the URL
+    const levelID = params.get("id");
 
-  //Load data from level.json
-  const response = await fetch("levels.json");
+    // The ID of our Google spreadsheet
+    const spreadsheetID = "1gg5hyZiUSGLVQuIhOqh3FOI9iR0oO2zdQwefgqPkvaE";
 
-  //Convert json data into javascript and store in variable named levels
-  const levels = await response.json();
+    // Ask Google Sheets for the Levels sheet
+    const url =
+        `https://docs.google.com/spreadsheets/d/${spreadsheetID}/gviz/tq?tqx=out:csv&sheet=Levels`;
 
-  //Find the corresponding level id from the url in the json data
-  /// "===" are they equal and the same type?
-  const level = levels.find(level => level.levelID === levelID);
+    // Fetch the spreadsheet
+    const response = await fetch(url);
 
-  //Print level ID, full json, and level specific data to console
-  console.log(levelID);
-  console.log(levels);
-  console.log(level);
+    // Turn the response into text
+    const data = await response.text();
 
-  //Put level data onto the page
-  document.getElementById("level-name").textContent = level.name;
-  document.getElementById("level-creator").textContent = level.creator;
-  document.getElementById("level-rank").textContent = level.rank;
-  document.getElementById("level-points").textContent = level.points;
-  document.getElementById("level-verifier").textContent = level.verifier;
-  document.getElementById("level-id").textContent = level.levelID;
+    // Split the spreadsheet into rows
+    const rows = data.split("\n");
 
- // Find the copy button
- const copyButton = document.getElementById("copy-id-button");
+    // Turn every spreadsheet row into a level object
+    const levels = rows.slice(1).map(row => {
 
- // Copy the level ID when the button is clicked
- copyButton.addEventListener("click", () => {
+        const columns = row.split(",").map(value =>
+            value.replace(/^"|"$/g, "")
+        );
 
-    // Copy the ID to the clipboard
-    navigator.clipboard.writeText(level.levelID);
+        return {
+            levelID: columns[0],
+            name: columns[1],
+            rank: Number(columns[2]),
+            points: Number(columns[3]),
+            creator: columns[4],
+            verifier: columns[5]
+        };
 
-    // Change the button text
-    copyButton.textContent = "Copied!";
+    });
 
-    //Run this after 1000 ms
-    setTimeout(() => {
-    copyButton.textContent = "Copy ID";
-  }, 1000);
- });
+    // Find the level that matches the ID in the URL
+    const level = levels.find(level => level.levelID === levelID);
+
+    console.log(level);
+
+    // Put level data onto the page
+    document.getElementById("level-name").textContent = level.name;
+    document.getElementById("level-creator").textContent = level.creator;
+    document.getElementById("level-rank").textContent = level.rank;
+    document.getElementById("level-points").textContent = level.points;
+    document.getElementById("level-verifier").textContent = level.verifier;
+    document.getElementById("level-id").textContent = level.levelID;
+
+    // Find the copy button
+    const copyButton = document.getElementById("copy-id-button");
+
+    // Copy the level ID when the button is clicked
+    copyButton.addEventListener("click", () => {
+
+        navigator.clipboard.writeText(level.levelID);
+
+        copyButton.textContent = "Copied!";
+
+        setTimeout(() => {
+            copyButton.textContent = "Copy ID";
+        }, 1000);
+
+    });
+
 }
 
 loadLevel();
