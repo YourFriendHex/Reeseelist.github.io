@@ -22,19 +22,38 @@ async function loadPlayers() {
         ? player.tags.split(",").map(tag => tag.trim())
         : [];
 
+        const gradientColors = player.gradient
+        ? player.gradient.split(",").map(color => color.trim())
+        : [];
+
         // Format the player tags and color them
-        const tagHTML = tags.map(tag => {
+        const tagHTML = tags.map((tag, index) => {
 
-            // Call tag color function to get tage color
-            const color = tagColor(tag);
+    // Get the three colors belonging to this tag
+    const colors = gradientColors.slice(index * 3, index * 3 + 3);
 
-           return `
-              <span class="player-tag" style="color: ${color};">
-                 ${tag}
-              </span>
-           `;
+    // If no colors were specified, use the generated tag color
+    if (colors.length === 0) {
+        colors.push(tagColor(tag));
+    }
 
-        }).join("");
+    // Create the CSS gradient
+    const gradient = `linear-gradient(to right, ${colors.join(", ")})`;
+
+    return `
+        <span
+            class="player-tag"
+            style="
+                background:
+                    linear-gradient(white, white) padding-box,
+                    ${gradient} border-box;
+            "
+        >
+            ${tag}
+        </span>
+    `;
+
+}).join("");
 
        
        playerElement.innerHTML = `
