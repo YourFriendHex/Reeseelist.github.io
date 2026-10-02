@@ -33,6 +33,9 @@ async function loadPlayers() {
     // Get the three colors belonging to this tag
     const colors = gradientColors.slice(index * 3, index * 3 + 3);
 
+    // Get color for text
+    const textColor = colors[0];        
+
     // If no colors were specified, use the generated tag color
     if (colors.length === 0) {
         colors.push(tagColor(tag));
@@ -45,6 +48,7 @@ async function loadPlayers() {
         <span
             class="player-tag"
             style="
+                color: ${textColor};
                 background:
                     linear-gradient(white, white) padding-box,
                     ${gradient} border-box;
