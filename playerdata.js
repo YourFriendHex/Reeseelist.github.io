@@ -28,6 +28,31 @@ async function loadPlayer() {
         player.name === playerName
     );
 
+        // Find the player's tags
+        const tags = player.tags
+        ? player.tags.split(",").map(tag => tag.trim())
+        : [];
+
+        // Find the tag container
+        const tagContainer = document.getElementById("player-tags");
+
+        // Create the player's tags
+        tags.forEach(tag => {
+
+        const color = tagColor(tag);
+
+        const tagElement = document.createElement("span");
+
+        tagElement.classList.add("player-tag");
+
+        tagElement.textContent = tag;
+
+        tagElement.style.color = color;
+
+        tagContainer.appendChild(tagElement);
+
+});
+
     // Find this player's completed levels
     const playerCompletions = completions.filter(completion =>
         completion.player === playerName
