@@ -29,27 +29,51 @@ async function loadPlayer() {
     );
 
         // Find the player's tags
-        const tags = player.tags
-        ? player.tags.split(",").map(tag => tag.trim())
-        : [];
+       // Turn the player's tag string into an array
+const tags = player.tags
+    ? player.tags.split(",").map(tag => tag.trim())
+    : [];
 
-        // Find the tag container
-        const tagContainer = document.getElementById("player-tags");
+// Turn the gradient string into an array of colors
+const gradientColors = player.gradient
+    ? player.gradient.split(",").map(color => color.trim())
+    : [];
 
-        // Create the player's tags
-        tags.forEach(tag => {
+// Find the tag container
+const tagContainer = document.getElementById("player-tags");
 
-        const color = tagColor(tag);
+// Create the player's tags
+tags.forEach((tag, index) => {
 
-        const tagElement = document.createElement("span");
+    // Get the three colors belonging to this tag
+    const colors = gradientColors.slice(index * 3, index * 3 + 3);
 
-        tagElement.classList.add("player-tag");
+    // If no custom colors were specified, use the generated tag color
+    if (colors.length === 0) {
+        colors.push(tagColor(tag));
+    }
 
-        tagElement.textContent = tag;
+    // Create the CSS gradient
+    const gradient =
+        `linear-gradient(to right, ${colors.join(", ")})`;
 
-        tagElement.style.color = color;
+    // Use the first color for the text
+    const textColor = colors[0];
 
-        tagContainer.appendChild(tagElement);
+    // Create the tag element
+    const tagElement = document.createElement("span");
+
+    tagElement.classList.add("player-tag");
+
+    tagElement.textContent = tag;
+
+    tagElement.style.color = textColor;
+
+    tagElement.style.background =
+        `linear-gradient(white, white) padding-box,
+         ${gradient} border-box`;
+
+    tagContainer.appendChild(tagElement);
 
 });
 
