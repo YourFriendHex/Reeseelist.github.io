@@ -213,11 +213,13 @@ header p {
     margin-left: 6px;
     padding: 3px 7px;
 
-    border: 1px solid currentColor;
+    border: 2px solid transparent;
     border-radius: 8px;
 
     font-size: 12px;
     font-weight: bold;
 
-    background-color: rgba(0, 0, 0, 0.05);
+    background:
+        linear-gradient(white, white) padding-box,
+        linear-gradient(to right, currentColor, currentColor) border-box;
 }
