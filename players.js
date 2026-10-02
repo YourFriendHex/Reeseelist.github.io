@@ -18,7 +18,7 @@ async function loadPlayers() {
 
        
        playerElement.innerHTML = `
-            <a href="player.html?name=${encodeURIComponent(player.name)}" class="player-link">
+            <a href="playerdata.html?name=${encodeURIComponent(player.name)}" class="player-link">
 
             <div class="player-rank">
                 #${index + 1}
