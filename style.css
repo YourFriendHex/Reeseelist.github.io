@@ -181,3 +181,10 @@ header p {
 
     cursor: pointer;
 }
+
+.player-rank {
+    width: 60px;
+
+    font-size: 24px;
+    font-weight: bold;
+}
