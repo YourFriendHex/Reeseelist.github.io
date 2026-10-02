@@ -23,7 +23,7 @@ async function loadPlayers() {
             </div>
 
             <div class="player-name">
-                ${player.name}
+                &nbsp;${player.name}
             </div>
 
             <div class="player-points">
