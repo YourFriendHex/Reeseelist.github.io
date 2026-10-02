@@ -1,7 +1,7 @@
 async function loadLevels() {
 
     // Get the levels from Google Sheets
-    const levels = await getLevels();
+    const levels = await getSheet("Levels");
 
     // Find the list on the webpage
     const list = document.getElementById("level-list");
