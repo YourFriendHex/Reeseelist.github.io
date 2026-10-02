@@ -46,7 +46,8 @@ async function getPlayers() {
     const players = rows.map(row => {
 
         return {
-            name: row[0]
+            name: row[0],
+            role: row[1]
         };
 
     });
