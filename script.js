@@ -15,6 +15,11 @@ async function loadLevels() {
 
     // Print the spreadsheet data to the console
     console.log(data);
+
+    // Split the spreadsheet into individual rows
+    const rows = data.split("\n");
+
+    console.log(rows);
 }
 
 loadLevels();
