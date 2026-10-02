@@ -25,12 +25,6 @@ async function loadLevels() {
 
     // Create an entry for every level
     levels.forEach(level => {
-        // ...
-    });
-
-
-    // Create an entry for every level
-    levels.forEach(level => {
 
         const levelElement = document.createElement("div");
         levelElement.classList.add("level");
