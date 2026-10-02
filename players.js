@@ -1,21 +1,3 @@
-// Function to create tag colors
-function tagColor(tag) {
-
-    let hash = 0;
-
-    // Turn each character into a number
-    for (let i = 0; i < tag.length; i++) {
-
-        hash = tag.charCodeAt(i) + ((hash << 5) - hash);
-
-    }
-
-    // Convert the number into a hexadecimal color
-    const color = Math.abs(hash).toString(16).substring(0, 6);
-
-    return "#" + color.padStart(6, "0");
-}
-
 // Main function that loads players
 async function loadPlayers() {
 
