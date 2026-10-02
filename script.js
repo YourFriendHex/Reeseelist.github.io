@@ -16,7 +16,10 @@ async function loadLevels() {
         };
 
     });
-
+    
+    // Sort levels from highest rank to lowest rank
+    levels.sort((a, b) => a.rank - b.rank);
+    
     // Find the list on the webpage
     const list = document.getElementById("level-list");
 
