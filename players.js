@@ -17,19 +17,23 @@ async function loadPlayers() {
         playerElement.classList.add("player");
 
        
-        playerElement.innerHTML = `
+       playerElement.innerHTML = `
+            <a href="player.html?name=${encodeURIComponent(player.name)}" class="player-link">
+
             <div class="player-rank">
                 #${index + 1}
             </div>
 
             <div class="player-name">
-                &nbsp;${player.name}
+                ${player.name}
             </div>
 
             <div class="player-points">
                 ${player.points} pts
             </div>
-        `;
+
+        </a>
+    `;
 
         list.appendChild(playerElement);
 
