@@ -188,3 +188,7 @@ header p {
     font-size: 24px;
     font-weight: bold;
 }
+
+#completed-levels {
+    margin-top: 20px;
+}
